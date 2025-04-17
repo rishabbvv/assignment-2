@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registration Form</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(to right, #f3e7e9, #e3eeff);
+            text-align: center;
+        }
+        form {
+            width: 500px;
+            margin: auto;
+            padding: 20px;
+            background: #fff;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px gray;
+            text-align: left;
+        }
+        h2 {
+            color: blue;
+            text-align: center;
+        }
+        label {
+            font-weight: bold;
+        }
+        input, select, textarea {
+            width: 100%;
+            padding: 8px;
+            margin: 5px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        .error {
+            color: red;
+            font-size: 12px;
+            float: right;
+            display: none;
+        }
+        .button {
+            background-color: red;
+            color: white;
+            padding: 10px;
+            border: none;
+            cursor: pointer;
+            width: 100%;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+        .button:hover {
+            background-color: darkred;
+        }
+        .gender-group, .languages {
+            display: flex;
+            align-items: center;
+        }
+        .languages label {
+            margin-right: 10px;
+        }
+    </style>
+</head>
+<body>
+
+    <h2>Registration Form</h2>
+    <form id="registrationForm">
+        <label>First Name:</label>
+        <input type="text" id="firstName">
+        <span class="error" id="firstNameError">POOR</span>
+
+        <label>Last Name:</label>
+        <input type="text" id="lastName">
+        <span class="error" id="lastNameError">POOR</span>
+
+        <label>Email:</label>
+        <input type="email" id="email">
+        <span class="error" id="emailError">POOR</span>
+
+        <label>Password:</label>
+        <input type="password" id="password">
+        <span class="error" id="passwordError">POOR</span>
+
+        <label>Re-enter Password:</label>
+        <input type="password" id="confirmPassword">
+        <span class="error" id="confirmPasswordError">POOR OR MISMATCH</span>
+
+        <label>Gender:</label>
+        <div class="gender-group">
+            <input type="radio" name="gender" value="Male"> Male
+            <input type="radio" name="gender" value="Female" style="margin-left: 10px;"> Female
+        </div>
+
+        <label>Age:</label>
+        <input type="number" id="age">
+        <span class="error" id="ageError">POOR</span>
+
+        <label>Phone Number:</label>
+        <input type="text" id="phone">
+        <span class="error" id="phoneError">POOR</span>
+
+        <label>Address:</label>
+        <textarea id="address"></textarea>
+        <span class="error" id="addressError">POOR</span>
+
+        <label>State:</label>
+        <input type="text" id="state">
+        <span class="error" id="stateError">POOR</span>
+
+        <label>Country:</label>
+        <select id="country">
+            <option value="">Choose your country</option>
+            <option value="India">India</option>
+            <option value="USA">USA</option>
+            <option value="UK">UK</option>
+        </select>
+
+        <label>Languages Known:</label>
+        <div class="languages">
+            <input type="checkbox" value="English"> English
+            <input type="checkbox" value="Kannada" style="margin-left: 10px;"> Kannada
+            <input type="checkbox" value="Hindi" style="margin-left: 10px;"> Hindi
+            <input type="checkbox" value="Telugu" style="margin-left: 10px;"> Telugu
+        </div>
+
+        <input type="checkbox" id="declaration"> Hereby I declare all the given details are true
+        <span class="error" id="declarationError">Please check this box</span>
+
+        <p>Log in to <a href="#">Ehmus</a> website</p>
+
+        <button type="button" class="button" onclick="validateForm()">REGISTER</button>
+    </form>
+
+    <script>
+        function validateForm() {
+            let isValid = true;
+
+            // Reset error messages
+            document.querySelectorAll(".error").forEach(e => e.style.display = "none");
+
+            let firstName = document.getElementById("firstName").value.trim();
+            let lastName = document.getElementById("lastName").value.trim();
+            let email = document.getElementById("email").value.trim();
+            let password = document.getElementById("password").value.trim();
+            let confirmPassword = document.getElementById("confirmPassword").value.trim();
+            let phone = document.getElementById("phone").value.trim();
+            let address = document.getElementById("address").value.trim();
+            let state = document.getElementById("state").value.trim();
+            let age = document.getElementById("age").value.trim();
+            let declaration = document.getElementById("declaration").checked;
+
+            if (firstName === "") {
+                showError("firstNameError");
+                isValid = false;
+            }
+            if (lastName === "") {
+                showError("lastNameError");
+                isValid = false;
+            }
+            if (email === "" || !email.includes("@")) {
+                showError("emailError");
+                isValid = false;
+            }
+            if (password.length < 6) {
+                showError("passwordError");
+                isValid = false;
+            }
+            if (confirmPassword !== password) {
+                showError("confirmPasswordError");
+                isValid = false;
+            }
+            if (!/^\d{10}$/.test(phone)) {
+                showError("phoneError");
+                isValid = false;
+            }
+            if (age === "" || age <= 0) {
+                showError("ageError");
+                isValid = false;
+            }
+            if (address === "") {
+                showError("addressError");
+                isValid = false;
+            }
+            if (state === "") {
+                showError("stateError");
+                isValid = false;
+            }
+            if (!declaration) {
+                showError("declarationError");
+                isValid = false;
+            }
+
+            if (isValid) {
+                alert("Form submitted successfully!");
+            }
+        }
+
+        function showError(id) {
+            document.getElementById(id).style.display = "inline";
+        }
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Animated Train</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 50px;
+        }
+        #trainText {
+            position: absolute;
+            left: 0;
+            top: 150px;
+            font-size: 80px;
+            font-weight: bold;
+            color: green;
+        }
+        .buttons {
+            margin-top: 20px;
+        }
+        button {
+            font-size: 16px;
+            padding: 8px 15px;
+            margin: 5px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+    <div id="trainText">TRAIN</div>
+    <h2 style="color: blue;">Click the following buttons to handle animation</h2>
+    <div class="buttons">
+        <button onclick="startAnimation()">Start</button>
+        <button onclick="stopAnimation()">Stop</button>
+    </div>
+
+    <script>
+        let trainText = document.getElementById("trainText");
+        let position = 0;
+        let animation;
+
+        function moveTrain() {
+            if (position < window.innerWidth - 200) {
+                position += 5;
+                trainText.style.left = position + "px";
+            } else {
+                position = -200; // Reset position when train reaches end
+            }
+            animation = requestAnimationFrame(moveTrain);
+        }
+
+        function startAnimation() {
+            if (!animation) {
+                moveTrain();
+            }
+        }
+
+        function stopAnimation() {
+            cancelAnimationFrame(animation);
+            animation = null;
+        }
+    </script>
+
+</body>
+</html>

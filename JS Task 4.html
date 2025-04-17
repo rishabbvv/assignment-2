@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Show Date & Time</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 50px;
+        }
+        button {
+            padding: 10px;
+            font-size: 16px;
+            margin: 10px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <button onclick="showDate()">Show Date</button>
+    <p id="dateOutput"></p>
+
+    <button onclick="showTime()">Show Time</button>
+    <p id="timeOutput"></p>
+
+    <script>
+        function showDate() {
+            let today = new Date();
+            let formattedDate = `${today.getDate()}/${today.toLocaleString('default', { month: 'long' })}/${today.getFullYear()}`;
+            document.getElementById("dateOutput").innerText = formattedDate;
+        }
+
+        function showTime() {
+            let now = new Date();
+            document.getElementById("timeOutput").innerText = now.toString();
+        }
+    </script>
+</body>
+</html>

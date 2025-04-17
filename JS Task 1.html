@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reverse Number</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 50px;
+        }
+        input, button {
+            font-size: 16px;
+            padding: 8px;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <h2>Reverse a Number</h2>
+    <input type="number" id="numberInput" placeholder="Enter a number">
+    <button onclick="reverseAndDisplay()">Reverse</button>
+    <p id="result"></p>
+
+    <script>
+        function reverseNumber(num) {
+            return parseInt(num.toString().split('').reverse().join(''));
+        }
+
+        function reverseAndDisplay() {
+            let input = document.getElementById("numberInput").value;
+            let reversed = reverseNumber(input);
+            document.getElementById("result").innerText = "Reversed Number: " + reversed;
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alphabetize String</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 50px;
+        }
+        input, button {
+            padding: 10px;
+            font-size: 16px;
+            margin: 10px;
+        }
+    </style>
+</head>
+<body>
+    <h2>Alphabetize a String</h2>
+    <input type="text" id="userInput" placeholder="Enter a string">
+    <button onclick="sortString()">Sort</button>
+    <p id="output"></p>
+
+    <script>
+        function sortString() {
+            let str = document.getElementById("userInput").value;
+            let sortedStr = str.split('').sort().join('');
+            document.getElementById("output").innerText = "Sorted String: " + sortedStr;
+        }
+    </script>
+</body>
+</html>
